@@ -37,9 +37,7 @@ async function loadProfile() {
                 document.getElementById("content").innerHTML = `
                     <h2>✓ UNIMAC STAFF VERIFIED</h2>
 
-                    ID_Photos/${photoFile}
-
-                    <h3>${fullName}</h3>
+                    <img src="ID_Photos/${photoFile}" alt="Staff PhotofullName}</h3>
 
                     <p><strong>Staff ID:</strong><br>${id}</p>
 
@@ -60,15 +58,3 @@ async function loadProfile() {
         }
 
         document.getElementById("content").innerHTML =
-            "<h3>Staff Record Not Found</h3>";
-
-    } catch (error) {
-
-        console.error(error);
-
-        document.getElementById("content").innerHTML =
-            "<h3>Error loading staff data.</h3>";
-    }
-}
-
-loadProfile();
