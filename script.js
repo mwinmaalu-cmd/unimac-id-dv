@@ -9,46 +9,83 @@ async function loadProfile() {
         return;
     }
 
-    const response = await fetch("staff_database.csv");
-    const csvText = await response.text();
+    try {
 
-    const rows = csvText.trim().split("\n");
+        const response = await fetch("staff_database.csv");
+        const csvText = await response.text();
 
-    for (let i = 1; i < rows.length; i++) {
+        const rows = csvText.trim().split("\n");
 
-        const cols = rows[i].split(",");
+        for (let i = 1; i < rows.length; i++) {
 
-        if (cols[0].trim() === staffId.trim()) {
+            const cols = rows[i].split(",");
 
-            const photo = cols[7].trim();
+            const id = cols[0].trim();
 
-            document.getElementById("content").innerHTML = `
-                <h2>✓ UNIMAC STAFF VERIFIED</h2>
+            if (id === staffId.trim()) {
 
-                ID_Photos/${photo}
+                const name = cols[1].trim();
+                const institute = cols[2].trim();
+                const campus = cols[3].trim();
+                const department = cols[4].trim();
+                const designation = cols[5].trim();
+                const status = cols[6].trim();
 
-                <h3>${cols[1]}</h3>
+                // Photo filename from CSV
+                const photoFile = cols[7].trim();
 
-                <p><strong>Staff ID:</strong> ${cols[0]}</p>
+                document.getElementById("content").innerHTML = `
+                    <h2>✓ UNIMAC STAFF VERIFIED</h2>
 
-                <p><strong>Institute:</strong><br>${cols[2]}</p>
+                    photoFile}" alt="Staff Photo">
 
-                <p><strong>Campus:</strong><br>${cols[3]}</p>
+                    <h3>${name}</h3>
 
-                <p><strong>Department:</strong><br>${cols[4]}</p>
+                    <p>
+                        <strong>Staff ID:</strong><br>
+                        ${id}
+                    </p>
 
-                <p><strong>Designation:</strong><br>${cols[5]}</p>
+                    <p>
+                        <strong>Institute:</strong><br>
+                        ${institute}
+                    </p>
 
-                <p><strong>Status:</strong><br>
-                <span class="active">${cols[6]}</span></p>
-            `;
+                    <p>
+                        <strong>Campus:</strong><br>
+                        ${campus}
+                    </p>
 
-            return;
+                    <p>
+                        <strong>Department:</strong><br>
+                        ${department}
+                    </p>
+
+                    <p>
+                        <strong>Designation:</strong><br>
+                        ${designation}
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong><br>
+                        <span class="active">${status}</span>
+                    </p>
+                `;
+
+                return;
+            }
         }
-    }
 
-    document.getElementById("content").innerHTML =
-        "<h3>Staff Record Not Found</h3>";
+        document.getElementById("content").innerHTML =
+            "<h3>Staff Record Not Found</h3>";
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("content").innerHTML =
+            "<h3>Error loading staff data.</h3>";
+    }
 }
 
 loadProfile();
