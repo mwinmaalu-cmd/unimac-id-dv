@@ -34,15 +34,12 @@ async function loadProfile() {
                 const status = cols[6].trim();
                 const photoFile = cols[7].trim();
 
-                const photoTag =
-                    'ID_Photos/' +
-                    photoFile +
-                    '';
+                const content = document.getElementById("content");
 
-                document.getElementById("content").innerHTML = `
+                content.innerHTML = `
                     <h2>✓ UNIMAC STAFF VERIFIED</h2>
 
-                    ${photoTag}
+                    <img id="staffPhoto" alt="Staff Photo">
 
                     <h3>${fullName}</h3>
 
@@ -59,6 +56,9 @@ async function loadProfile() {
                     <p><strong>Status:</strong><br>
                     <span class="active">${status}</span></p>
                 `;
+
+                document.getElementById("staffPhoto").src =
+                    "ID_Photos/" + photoFile;
 
                 return;
             }
