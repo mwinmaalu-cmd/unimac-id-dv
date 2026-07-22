@@ -29,7 +29,7 @@ async function loadProfile() {
                 document.getElementById("content").innerHTML = `
                     <h2>✓ UNIMAC STAFF VERIFIED</h2>
 
-                    File}" alt="Staff Photo">
+                    ID_Photos/${photoFile} alt="Staff Photo">
 
                     <h3>${cols[1]}</h3>
 
@@ -59,7 +59,7 @@ async function loadProfile() {
         console.error(error);
 
         document.getElementById("content").innerHTML =
-            "<h3>Error loading staff data</h3>";
+            "<h3>Error loading staff data.</h3>";
     }
 }
 
