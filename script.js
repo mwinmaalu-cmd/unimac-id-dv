@@ -18,14 +18,14 @@ async function loadProfile() {
 
         const cols = rows[i].split(",");
 
-        if (cols[0] === staffId) {
+        if (cols[0].trim() === staffId.trim()) {
 
-            const photo = cols[7];
+            const photo = cols[7].trim();
 
             document.getElementById("content").innerHTML = `
                 <h2>✓ UNIMAC STAFF VERIFIED</h2>
 
-                <img srcs/${photo}
+                ID_Photos/${photo}
 
                 <h3>${cols[1]}</h3>
 
