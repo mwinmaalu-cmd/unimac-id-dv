@@ -4,10 +4,26 @@ async function loadProfile() {
     const staffId = params.get("id");
 
     if (!staffId) {
-        document.getElementById("content").innerHTML = `
-            <h2>UniMAC Staff Digital Verification System</h2>
-            <p>Please scan a UniMAC Staff ID Card QR Code to verify a staff member.</p>
-        `;
+document.getElementById("content").innerHTML = `
+    <h2>✓ UNIMAC STAFF VERIFIED</h2>
+
+    ID_Photos/${photoFile}
+
+    <h3>${cols[1]}</h3>
+
+    <p><strong>Staff ID:</strong><br>${cols[0]}</p>
+
+    <p><strong>Institute:</strong><br>${cols[2]}</p>
+
+    <p><strong>Campus:</strong><br>${cols[3]}</p>
+
+    <p><strong>Department:</strong><br>${cols[4]}</p>
+
+    <p><strong>Designation:</strong><br>${cols[5]}</p>
+
+    <p><strong>Status:</strong><br>
+    <span class="active">${cols[6]}</span></p>
+`;
         return;
     }
 
