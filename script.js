@@ -37,7 +37,7 @@ async function loadProfile() {
                 document.getElementById("content").innerHTML = `
                     <h2>✓ UNIMAC STAFF VERIFIED</h2>
 
-                    <img src="ID_Photos/${photoFile}" alt="Staff PhotofullName}</h3>
+                    <img src="ID_Photos/${photoFile}" alt="Staff Photofull_Photos/${photoFile}" alt="Staff Photo">
 
                     <p><strong>Staff ID:</strong><br>${id}</p>
 
