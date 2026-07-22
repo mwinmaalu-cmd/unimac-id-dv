@@ -1,4 +1,3 @@
-
 async function loadProfile() {
 
     const params = new URLSearchParams(window.location.search);
@@ -35,26 +34,31 @@ async function loadProfile() {
                 const status = cols[6].trim();
                 const photoFile = cols[7].trim();
 
+                const photoTag =
+                    'ID_Photos/' +
+                    photoFile +
+                    '';
+
                 document.getElementById("content").innerHTML = `
-    <h2>✓ UNIMAC STAFF VERIFIED</h2>
+                    <h2>✓ UNIMAC STAFF VERIFIED</h2>
 
-    }" alt="Staff Photo">
+                    ${photoTag}
 
-    <h3>${fullName}</h3>
+                    <h3>${fullName}</h3>
 
-    <p><strong>Staff ID:</strong><br>${id}</p>
+                    <p><strong>Staff ID:</strong><br>${id}</p>
 
-    <p><strong>Institute:</strong><br>${institute}</p>
+                    <p><strong>Institute:</strong><br>${institute}</p>
 
-    <p><strong>Campus:</strong><br>${campus}</p>
+                    <p><strong>Campus:</strong><br>${campus}</p>
 
-    <p><strong>Department:</strong><br>${department}</p>
+                    <p><strong>Department:</strong><br>${department}</p>
 
-    <p><strong>Designation:</strong><br>${designation}</p>
+                    <p><strong>Designation:</strong><br>${designation}</p>
 
-    <p><strong>Status:</strong><br>
-    <span class="active">${status}</span></p>
-`;
+                    <p><strong>Status:</strong><br>
+                    <span class="active">${status}</span></p>
+                `;
 
                 return;
             }
