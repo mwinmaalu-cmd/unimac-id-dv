@@ -3,6 +3,7 @@ async function loadProfile() {
     const params = new URLSearchParams(window.location.search);
     const staffId = params.get("id");
 
+    // Landing page
     if (!staffId) {
         document.getElementById("content").innerHTML = `
             <h2>UniMAC Staff Digital Verification System</h2>
@@ -35,25 +36,25 @@ async function loadProfile() {
                 const photoFile = cols[7].trim();
 
                 document.getElementById("content").innerHTML = `
-    <h2>✓ UNIMAC STAFF VERIFIED</h2>
+                    <h2>✓ UNIMAC STAFF VERIFIED</h2>
 
-    ID_Photos/${photoFile}="Staff Photo">
+                    ID_Photos/${photoFile}
 
-    <h3>${fullName}</h3>
+                    <h3>${fullName}</h3>
 
-    <p><strong>Staff ID:</strong><br>${id}</p>
+                    <p><strong>Staff ID:</strong><br>${id}</p>
 
-    <p><strong>Institute:</strong><br>${institute}</p>
+                    <p><strong>Institute:</strong><br>${institute}</p>
 
-    <p><strong>Campus:</strong><br>${campus}</p>
+                    <p><strong>Campus:</strong><br>${campus}</p>
 
-    <p><strong>Department:</strong><br>${department}</p>
+                    <p><strong>Department:</strong><br>${department}</p>
 
-    <p><strong>Designation:</strong><br>${designation}</p>
+                    <p><strong>Designation:</strong><br>${designation}</p>
 
-    <p><strong>Status:</strong><br>
-    <span class="active">${status}</span></p>
-`;
+                    <p><strong>Status:</strong><br>
+                    <span class="active">${status}</span></p>
+                `;
 
                 return;
             }
