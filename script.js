@@ -3,7 +3,6 @@ async function loadProfile() {
     const params = new URLSearchParams(window.location.search);
     const staffId = params.get("id");
 
-    // Home page message
     if (!staffId) {
         document.getElementById("content").innerHTML = `
             <h2>UniMAC Staff Digital Verification System</h2>
