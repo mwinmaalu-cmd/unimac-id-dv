@@ -89,6 +89,16 @@ async function loadProfile() {
                         <div class="info-label">Status</div>
                         <div class="active">${status}</div>
                     </div>
+
+                    <div class="button-container">
+                        <button class="action-btn print-btn" onclick="window.print()">
+                            Print Profile
+                        </button>
+
+                        <button class="action-btn close-btn" onclick="window.close()">
+                            Close
+                        </button>
+                    </div>
                 `;
 
                 document.getElementById("logo").src =
