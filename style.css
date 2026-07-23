@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Aptos, Arial, sans-serif;
     background: #f4f6f9;
     margin: 0;
     padding: 20px;
@@ -16,19 +16,20 @@ body {
 }
 
 .logo {
-    width: 120px;
+    width: 130px;
     display: block;
-    margin: 0 auto 15px auto;
+    margin: 0 auto 20px auto;
     border: none;
 }
 
 h2 {
-    color: #003366;
+    color: #003b75; /* UniMAC blue */
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
 h3 {
-    color: #003366;
+    color: #003b75;
     margin-top: 15px;
     margin-bottom: 20px;
 }
@@ -38,19 +39,36 @@ img {
     display: block;
     margin: 0 auto 15px auto;
     border-radius: 10px;
-    border: 3px solid #003366;
+    border: 3px solid #003b75;
+}
+
+.info-label {
+    color: #8b1d3a; /* UniMAC maroon/red */
+    font-weight: 700;
+}
+
+.info-value {
+    color: #003b75;
+}
+
+.active {
+    background: #198754;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: bold;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.verification {
+    color: #198754;
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 8px;
 }
 
 p {
     margin-bottom: 15px;
-    line-height: 1.4;
-}
-
-.active {
-    background: #28a745;
-    color: white;
-    padding: 6px 15px;
-    border-radius: 20px;
-    font-weight: bold;
-    display: inline-block;
+    line-height: 1.5;
 }
