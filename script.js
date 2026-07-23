@@ -5,8 +5,13 @@ async function loadProfile() {
 
     if (!staffId) {
         document.getElementById("content").innerHTML = `
+            UniMAC_Images/unimac-logo.png
+
             <h2>UniMAC Staff Digital Verification System</h2>
-            <p>Please scan a UniMAC Staff ID Card QR Code to verify a staff member.</p>
+
+            <p>
+                Please scan a UniMAC Staff ID Card QR Code to verify a staff member.
+            </p>
         `;
         return;
     }
@@ -37,6 +42,8 @@ async function loadProfile() {
                 const content = document.getElementById("content");
 
                 content.innerHTML = `
+                    UniMAC_Images/unimac-logo.png
+
                     <h2>✓ UNIMAC STAFF VERIFIED</h2>
 
                     <img id="staffPhoto" alt="Staff Photo">
@@ -53,8 +60,10 @@ async function loadProfile() {
 
                     <p><strong>Designation:</strong><br>${designation}</p>
 
-                    <p><strong>Status:</strong><br>
-                    <span class="active">${status}</span></p>
+                    <p>
+                        <strong>Status:</strong><br>
+                        <span class="active">${status}</span>
+                    </p>
                 `;
 
                 document.getElementById("staffPhoto").src =
@@ -64,15 +73,17 @@ async function loadProfile() {
             }
         }
 
-        document.getElementById("content").innerHTML =
-            "<h3>Staff Record Not Found</h3>";
+        document.getElementById("content").innerHTML = `
+            <h3>Staff Record Not Found</h3>
+        `;
 
     } catch (error) {
 
         console.error(error);
 
-        document.getElementById("content").innerHTML =
-            "<h3>Error loading staff data.</h3>";
+        document.getElementById("content").innerHTML = `
+            <h3>Error loading staff data.</h3>
+        `;
     }
 }
 
