@@ -46,6 +46,17 @@ async function loadProfile() {
                 const status = cols[6].trim();
                 const photoFile = cols[7].trim();
 
+                const today = new Date();
+
+                const verificationDate =
+                    today.toLocaleDateString();
+
+                const verificationTime =
+                    today.toLocaleTimeString();
+
+                const verificationRef =
+                    "UNIMAC-" + id;
+
                 const content = document.getElementById("content");
 
                 content.innerHTML = `
@@ -90,14 +101,36 @@ async function loadProfile() {
                         <div class="active">${status}</div>
                     </div>
 
+                    <div class="info-block">
+                        <div class="info-label">Verified On</div>
+                        <div class="info-value">${verificationDate}</div>
+                    </div>
+
+                    <div class="info-block">
+                        <div class="info-label">Verified At</div>
+                        <div class="info-value">${verificationTime}</div>
+                    </div>
+
+                    <div class="info-block">
+                        <div class="info-label">Verification Reference</div>
+                        <div class="info-value">${verificationRef}</div>
+                    </div>
+
                     <div class="button-container">
                         <button class="action-btn print-btn" onclick="window.print()">
                             Print Profile
                         </button>
 
-                        <button class="action-btn close-btn" onclick="window.close()">
-                            Close
+                        <button class="action-btn back-btn" onclick="history.back()">
+                            Back
                         </button>
+                    </div>
+
+                    <div class="footer">
+                        <strong>UniMAC Staff Digital Verification System</strong><br>
+                        ICT Directorate<br>
+                        University of Media, Arts and Communication (UniMAC)<br><br>
+                        This profile is generated from the official UniMAC Staff Database.
                     </div>
                 `;
 
