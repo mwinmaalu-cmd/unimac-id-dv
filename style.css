@@ -7,21 +7,30 @@ body {
 
 .card {
     background: white;
-    max-width: 450px;
+    max-width: 500px;
     margin: auto;
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.logo {
+    width: 120px;
+    display: block;
+    margin: 0 auto 15px auto;
+    border: none;
 }
 
 h2 {
-    text-align: center;
     color: #003366;
+    margin-bottom: 20px;
 }
 
 h3 {
-    text-align: center;
     color: #003366;
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 img {
@@ -34,9 +43,14 @@ img {
 
 p {
     margin-bottom: 15px;
+    line-height: 1.4;
 }
 
 .active {
-    color: green;
+    background: #28a745;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
     font-weight: bold;
+    display: inline-block;
 }
