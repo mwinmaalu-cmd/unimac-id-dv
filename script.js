@@ -51,26 +51,44 @@ async function loadProfile() {
                 content.innerHTML = `
                     <img class="logo" id="logo" alt="UniMAC Logo">
 
-                    <h2>✓ UNIMAC STAFF VERIFIED</h2>
+                    <h2>
+                        <span class="verification-check">✓</span>
+                        UNIMAC STAFF VERIFIED
+                    </h2>
 
                     <img id="staffPhoto" alt="Staff Photo">
 
                     <h3>${fullName}</h3>
 
-                    <p><strong>Staff ID:</strong><br>${id}</p>
+                    <div class="info-block">
+                        <div class="info-label">Staff ID</div>
+                        <div class="info-value">${id}</div>
+                    </div>
 
-                    <p><strong>Institute:</strong><br>${institute}</p>
+                    <div class="info-block">
+                        <div class="info-label">Institute</div>
+                        <div class="info-value">${institute}</div>
+                    </div>
 
-                    <p><strong>Campus:</strong><br>${campus}</p>
+                    <div class="info-block">
+                        <div class="info-label">Campus</div>
+                        <div class="info-value">${campus}</div>
+                    </div>
 
-                    <p><strong>Department:</strong><br>${department}</p>
+                    <div class="info-block">
+                        <div class="info-label">Department</div>
+                        <div class="info-value">${department}</div>
+                    </div>
 
-                    <p><strong>Designation:</strong><br>${designation}</p>
+                    <div class="info-block">
+                        <div class="info-label">Designation</div>
+                        <div class="info-value">${designation}</div>
+                    </div>
 
-                    <p>
-                        <strong>Status:</strong><br>
-                        <span class="active">${status}</span>
-                    </p>
+                    <div class="info-block">
+                        <div class="info-label">Status</div>
+                        <div class="active">${status}</div>
+                    </div>
                 `;
 
                 document.getElementById("logo").src =
