@@ -92,13 +92,18 @@ img {
     color: white;
 }
 
-.close-btn {
+.back-btn {
     background: #8D1B3D;
     color: white;
 }
 
-.action-btn:hover {
-    opacity: 0.9;
+.footer {
+    margin-top: 35px;
+    padding-top: 15px;
+    border-top: 1px solid #d0d0d0;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.6;
 }
 
 p {
