@@ -3,9 +3,9 @@ async function loadProfile() {
     const params = new URLSearchParams(window.location.search);
     const staffId = params.get("id");
 
-    if (!staffId) {
+    const content = document.getElementById("content");
 
-        const content = document.getElementById("content");
+    if (!staffId) {
 
         content.innerHTML = `
             <img class="logo" id="logo" alt="UniMAC Logo">
@@ -30,7 +30,7 @@ async function loadProfile() {
         );
 
         if (!response.ok) {
-            throw new Error("Unable to load staff_database.csv");
+            throw new Error("Unable to load staff database.");
         }
 
         const csvText = await response.text();
@@ -46,7 +46,7 @@ async function loadProfile() {
                 continue;
             }
 
-            const clean = value =>
+            const clean = (value) =>
                 value.replace(/^"|"$/g, "").trim();
 
             const id = clean(cols[0]);
@@ -62,7 +62,7 @@ async function loadProfile() {
                 const status = clean(cols[8]);
 
                 const photoFile =
-                    photoPath.replace("ID_Photos\\", "");
+                    photoPath.split(/[\\/]/).pop();
 
                 const today = new Date();
 
@@ -75,11 +75,7 @@ async function loadProfile() {
                 const verificationRef =
                     "UNIMAC-" + id;
 
-                const content =
-                    document.getElementById("content");
-
                 content.innerHTML = `
-
                     <img class="logo" id="logo" alt="UniMAC Logo">
 
                     <h2>
@@ -139,35 +135,27 @@ async function loadProfile() {
                     <div class="button-container">
 
                         <button class="action-btn print-btn"
-                            onclick="window.print()">
+                                onclick="window.print()">
                             Print Profile
                         </button>
 
                         <button class="action-btn back-btn"
-                            onclick="history.back()">
+                                onclick="history.back()">
                             Back
                         </button>
 
                     </div>
 
                     <div class="footer">
-
                         <strong>
                             UniMAC Staff Digital Verification System
                         </strong>
-
                         <br>
-
                         ICT Directorate
-
                         <br>
-
                         University of Media, Arts and Communication (UniMAC)
-
                         <br><br>
-
                         This profile is generated from the official UniMAC Staff Database.
-
                     </div>
                 `;
 
@@ -175,8 +163,26 @@ async function loadProfile() {
                     "UniMAC_Images/unimac-logo.png";
 
                 document.getElementById("staffPhoto").src =
-                    "ID_Photos/" +
-                    photoFile.split(/[\\/]/).pop();
+                    "ID_Photos/" + photoFile;
 
                 return;
-         
+            }
+        }
+
+        content.innerHTML = `
+            <h3>Staff Record Not Found</h3>
+            <p>The supplied Staff ID does not exist in the database.</p>
+        `;
+
+    } catch (error) {
+
+        console.error(error);
+
+        content.innerHTML = `
+            <h3>Error Loading Staff Data</h3>
+            <p>${error.message}</p>
+        `;
+    }
+}
+
+loadProfile();
