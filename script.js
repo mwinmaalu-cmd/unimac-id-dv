@@ -26,25 +26,44 @@ async function loadProfile() {
     try {
 
         const response = await fetch("staff_database.csv");
+
+        if (!response.ok) {
+            throw new Error("Unable to load staff_database.csv");
+        }
+
         const csvText = await response.text();
 
-        const rows = csvText.trim().split("\n");
+        // Split into rows
+        const rows = csvText.trim().split(/\r?\n/);
 
+        // Skip header row
         for (let i = 1; i < rows.length; i++) {
 
-            const cols = rows[i].split(",");
+            // CSV parser that respects quotes
+            const cols = rows[i].match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
-            const id = cols[0].trim();
+            if (!cols || cols.length < 10) {
+                continue;
+            }
+
+            const clean = value =>
+                value.replace(/^"|"$/g, "").trim();
+
+            const id = clean(cols[0]);
 
             if (id === staffId.trim()) {
 
-                const fullName = cols[1].trim();
-                const institute = cols[2].trim();
-                const campus = cols[3].trim();
-                const department = cols[4].trim();
-                const designation = cols[5].trim();
-                const status = cols[6].trim();
-                const photoFile = cols[7].trim();
+                const fullName = clean(cols[1]);
+
+                const photoPath = clean(cols[2]);
+                const institute = clean(cols[4]);
+                const campus = clean(cols[5]);
+                const department = clean(cols[6]);
+                const designation = clean(cols[7]);
+                const status = clean(cols[8]);
+
+                const photoFile =
+                    photoPath.replace("ID_Photos\\", "");
 
                 const today = new Date();
 
@@ -57,9 +76,11 @@ async function loadProfile() {
                 const verificationRef =
                     "UNIMAC-" + id;
 
-                const content = document.getElementById("content");
+                const content =
+                    document.getElementById("content");
 
                 content.innerHTML = `
+
                     <img class="logo" id="logo" alt="UniMAC Logo">
 
                     <h2>
@@ -117,20 +138,37 @@ async function loadProfile() {
                     </div>
 
                     <div class="button-container">
-                        <button class="action-btn print-btn" onclick="window.print()">
+
+                        <button class="action-btn print-btn"
+                            onclick="window.print()">
                             Print Profile
                         </button>
 
-                        <button class="action-btn back-btn" onclick="history.back()">
+                        <button class="action-btn back-btn"
+                            onclick="history.back()">
                             Back
                         </button>
+
                     </div>
 
                     <div class="footer">
-                        <strong>UniMAC Staff Digital Verification System</strong><br>
-                        ICT Directorate<br>
-                        University of Media, Arts and Communication (UniMAC)<br><br>
+
+                        <strong>
+                            UniMAC Staff Digital Verification System
+                        </strong>
+
+                        <br>
+
+                        ICT Directorate
+
+                        <br>
+
+                        University of Media, Arts and Communication (UniMAC)
+
+                        <br><br>
+
                         This profile is generated from the official UniMAC Staff Database.
+
                     </div>
                 `;
 
@@ -138,21 +176,26 @@ async function loadProfile() {
                     "UniMAC_Images/unimac-logo.png";
 
                 document.getElementById("staffPhoto").src =
-                    "ID_Photos/" + photoFile;
+                    "ID_Photos/" + photoFile.split(/[\\/]/).pop();
 
                 return;
             }
         }
 
-        document.getElementById("content").innerHTML =
-            "<h3>Staff Record Not Found</h3>";
+        document.getElementById("content").innerHTML = `
+            <h3>Staff Record Not Found</h3>
+            <p>The supplied Staff ID does not exist in the database.</p>
+        `;
 
-    } catch (error) {
+    }
+    catch (error) {
 
         console.error(error);
 
-        document.getElementById("content").innerHTML =
-            "<h3>Error loading staff data.</h3>";
+        document.getElementById("content").innerHTML = `
+            <h3>Error Loading Staff Data</h3>
+            <p>${error.message}</p>
+        `;
     }
 }
 
