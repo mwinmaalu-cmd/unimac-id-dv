@@ -5,7 +5,13 @@ async function loadProfile() {
     alert("Staff ID received: [" + staffId + "]");
 console.log("Staff ID received:", staffId);
 
-    if (!staffId) {
+if (id === staffId.trim()) {
+ 
+alert(
+"MATCH FOUND\n" +
+"CSV ID: " + id +
+"\nURL ID: " + staffId
+);
 
         const content = document.getElementById("content");
 
