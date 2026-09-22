@@ -2,6 +2,8 @@ async function loadProfile() {
 
     const params = new URLSearchParams(window.location.search);
     const staffId = params.get("id");
+    alert("Staff ID received: [" + staffId + "]");
+console.log("Staff ID received:", staffId);
 
     if (!staffId) {
 
