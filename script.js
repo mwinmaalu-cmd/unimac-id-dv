@@ -40,6 +40,8 @@ alert(
         }
 
         const csvText = await response.text();
+        alert("CSV loaded successfully");
+alert(csvText.includes("761939"));
 
         // Split into rows
         const rows = csvText.trim().split(/\r?\n/);
