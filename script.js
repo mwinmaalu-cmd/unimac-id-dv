@@ -2,16 +2,8 @@ async function loadProfile() {
 
     const params = new URLSearchParams(window.location.search);
     const staffId = params.get("id");
-    alert("Staff ID received: [" + staffId + "]");
-console.log("Staff ID received:", staffId);
 
-if (id === staffId.trim()) {
- 
-alert(
-"MATCH FOUND\n" +
-"CSV ID: " + id +
-"\nURL ID: " + staffId
-);
+    if (!staffId) {
 
         const content = document.getElementById("content");
 
@@ -33,24 +25,22 @@ alert(
 
     try {
 
-        const response = await fetch("staff_database.csv");
+        const response = await fetch(
+            "staff_database.csv?v=" + Date.now()
+        );
 
         if (!response.ok) {
             throw new Error("Unable to load staff_database.csv");
         }
 
         const csvText = await response.text();
-        alert("CSV loaded successfully");
-alert(csvText.includes("761939"));
 
-        // Split into rows
         const rows = csvText.trim().split(/\r?\n/);
 
-        // Skip header row
         for (let i = 1; i < rows.length; i++) {
 
-            // CSV parser that respects quotes
-            const cols = rows[i].match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+            const cols =
+                rows[i].match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
             if (!cols || cols.length < 10) {
                 continue;
@@ -64,7 +54,6 @@ alert(csvText.includes("761939"));
             if (id === staffId.trim()) {
 
                 const fullName = clean(cols[1]);
-
                 const photoPath = clean(cols[2]);
                 const institute = clean(cols[4]);
                 const campus = clean(cols[5]);
@@ -114,7 +103,7 @@ alert(csvText.includes("761939"));
 
                     <div class="info-block">
                         <div class="info-label">Campus</div>
-                        <div class="info-value">${campus}</div>
+                        <div class="info-value">${campus || "N/A"}</div>
                     </div>
 
                     <div class="info-block">
@@ -124,7 +113,7 @@ alert(csvText.includes("761939"));
 
                     <div class="info-block">
                         <div class="info-label">Designation</div>
-                        <div class="info-value">${designation}</div>
+                        <div class="info-value">${designation || "N/A"}</div>
                     </div>
 
                     <div class="info-block">
@@ -186,27 +175,8 @@ alert(csvText.includes("761939"));
                     "UniMAC_Images/unimac-logo.png";
 
                 document.getElementById("staffPhoto").src =
-                    "ID_Photos/" + photoFile.split(/[\\/]/).pop();
+                    "ID_Photos/" +
+                    photoFile.split(/[\\/]/).pop();
 
                 return;
-            }
-        }
-
-        document.getElementById("content").innerHTML = `
-            <h3>Staff Record Not Found</h3>
-            <p>The supplied Staff ID does not exist in the database.</p>
-        `;
-
-    }
-    catch (error) {
-
-        console.error(error);
-
-        document.getElementById("content").innerHTML = `
-            <h3>Error Loading Staff Data</h3>
-            <p>${error.message}</p>
-        `;
-    }
-}
-
-loadProfile();
+         
